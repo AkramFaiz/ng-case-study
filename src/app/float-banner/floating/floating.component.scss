@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+@mixin bordering {
+    padding: 10px;
+    border: 1px solid #333333;
+}
+
+section{
+    @include bordering;
+    margin: 10px;
+    div{
+        @include bordering;
+        marquee {          
+            width: 100%; 
+            margin: 6px 5px 0 5px; 
+            @include bordering;
+        }
+    }
+}

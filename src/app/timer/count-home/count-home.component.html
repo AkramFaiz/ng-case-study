@@ -1,0 +1,10 @@
+<main fxLayout="column" fxLayoutGap="20px">
+    <section fxLayout="row" fxLayoutGap="20px">
+        <app-count-display [timer_val]="timerVal" fxFlex="0 1 calc(50% - 20px)"></app-count-display>
+        <app-count-actions (startClick)="startPress($event)" (resetClick)="resetPress($event)" [plogs]="pLogs" fxFlex="0 1 calc(50% - 20px)"></app-count-actions>
+    </section>
+    <section fxLayout="row" fxLayoutGap="20px">
+        <app-count-clicks [type_val]="type" fxFlex="0 1 calc(50% - 20px)"></app-count-clicks>
+        <app-count-logs [s_val]="sval" [p_val]="pval" fxFlex="0 1 calc(50% - 20px)"></app-count-logs>
+    </section>
+</main>

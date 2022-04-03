@@ -1,0 +1,32 @@
+<main>
+    <section fxLayout="row" fxLayoutAlign="end start">
+        <aside fxLayoutGap="20px">
+            <mat-button-toggle-group name="view" #group="matButtonToggleGroup">
+                <mat-button-toggle value="grid" aria-label="List view" (change)="selectOption($event)">
+                    <mat-icon>apps</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle value="list" aria-label="Grid view" (change)="selectOption($event)">
+                    <mat-icon>view_list</mat-icon>
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+            <mat-form-field appearance="fill" class="sorting">
+                <mat-label>Choose an option</mat-label>
+                <mat-select (selectionChange)="filtering($event)">
+                    <mat-option value="low">Price: Low to High</mat-option>
+                    <mat-option value="high">Price: High to Low</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </aside>
+    </section>
+    <section class="records">
+        <div [fxLayout]="type" fxLayoutGap="30px">
+            <mat-card *ngFor="let item of filteredProducts;" [fxFlex]="styling">
+                <mat-card-title> {{item.pname}}</mat-card-title>
+                <mat-card-content>{{item.pdesc}}</mat-card-content>
+                <mat-card-subtitle class="price" align="end">&#8377; {{item.pcost}}</mat-card-subtitle>
+                <mat-card-subtitle align="end" [ngClass]="item.pstock === 'available' ? 'instock' : 'outofstock'">
+                    {{item.pstock}}</mat-card-subtitle>
+            </mat-card>
+        </div>
+    </section>
+</main>

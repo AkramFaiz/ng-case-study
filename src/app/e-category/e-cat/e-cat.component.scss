@@ -1,0 +1,28 @@
+aside {
+    width: 340px;
+}
+
+mat-card {
+    margin: 15px 30px 15px 0;
+
+    .price {
+        font-size: 20px;
+        font-weight: 900;
+    }
+    .instock {
+        color: #46a35e;
+    }
+    .outofstock {
+        color: #f44336;
+    }     
+}
+
+.sorting {
+    position: absolute;
+}
+
+.records {
+    height: 555px;
+    overflow: auto;
+    padding: 0 0 0 20px;
+}

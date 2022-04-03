@@ -1,0 +1,9 @@
+<section>
+    <div><label for="textInput">Enter time limit: </label><input id="textInput" type="text" #textInput></div>
+    <p *ngIf="showError">Please enter numeric timer value.</p>
+    <div><button (click)="clicked('start')">Start/ Pause</button><button (click)="clicked('reset')">Reset</button></div>
+</section>
+<section>
+    <h4>Paused Logs:</h4>
+    <p *ngFor="let log of pausedLogs">{{log}}</p>
+</section>
