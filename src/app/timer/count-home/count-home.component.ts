@@ -27,6 +27,9 @@ export class CountHomeComponent implements OnInit {
       this.timerVal = this.enteredVal;
     }
     if (res.start) {
+      if(this.timerVal == 0){
+        this.resetPress("{reset: true}");
+      }
       this.sval++;
       this.inteerval = setInterval(() => {
         this.timerVal--;

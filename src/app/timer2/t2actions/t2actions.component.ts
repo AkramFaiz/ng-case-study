@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Timer2Service } from '../timer2.service';
 
 @Component({
@@ -14,6 +15,8 @@ export class T2actionsComponent implements OnInit, OnDestroy {
   timerVal: number = 0;
   tCount = 0;
   interval: any;
+  sub1!: Subscription;
+  sub2!: Subscription;
   constructor(private tService: Timer2Service) { }
 
   ngOnInit(): void {
@@ -21,16 +24,16 @@ export class T2actionsComponent implements OnInit, OnDestroy {
 
   clicked(val: string) {
     let temp: any = {}, tempLogs: any = {};
-    this.tService.getData().subscribe((data) => {
+    this.sub1 = this.tService.getData().subscribe((data) => {
       temp = data;
     });
-    this.tService.getLogs().subscribe((data) => {
+    this.sub2 = this.tService.getLogs().subscribe((data) => {
       tempLogs = data;
     });
     let theTime = new Date().toISOString().split('T')[0].split("-").reverse().join("-") + " "
       + new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true })
     
-    if (this.timerVal == 0) {
+    if (this.timerVal == 0 && !temp.bStart && !temp.bPause) {
       this.timerVal = JSON.parse(JSON.stringify(this.textInput.nativeElement.value));
     }
     if (val === "start") {
@@ -57,6 +60,7 @@ export class T2actionsComponent implements OnInit, OnDestroy {
           temp.pVal++;
           clearInterval(this.interval);
           tempLogs.logs.push("Paused at " + theTime);
+          console.log(this.timerVal);
           let pVal = this.timerVal + 1;
           this.pausedLogs.push("Paused at " + pVal);          
         }
@@ -84,5 +88,7 @@ export class T2actionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.sub1.unsubscribe();
+    this.sub2.unsubscribe();
   }
 }

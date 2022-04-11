@@ -20,9 +20,13 @@ mat-card {
 .sorting {
     position: absolute;
 }
-
-.records {
-    height: 555px;
-    overflow: auto;
-    padding: 0 0 0 20px;
+main{
+    height: 100%;
+    .records {
+        height: calc(100% - 100px);
+        overflow: auto;
+        padding: 0 0 0 20px;
+        display: block;
+        margin: 10px 0 0 0;
+    }
 }
